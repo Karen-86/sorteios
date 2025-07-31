@@ -10,32 +10,38 @@ const buttonStyles = {
     green: "bg-success hover:bg-success-hover",
     // warning: "bg-yellow-600 hover:bg-yellow-500",
     yellow: "bg-warning hover:bg-warning-hover",
+    blue: "bg-primary text-white hover:bg-[rgb(11,33,67)]"
   },
   secondary: {
     defaultColor: "",
     green: "bg-green-50 hover:bg-green-100 text-green-600",
     yellow: "bg-yellow-50 hover:bg-yellow-100 text-yellow-600",
+    blue: "bg-primary text-white hover:bg-[rgb(11,33,67)]"
   },
   outline: {
     defaultColor: "",
     green: "text-green-600 hover:text-green-600 border-green-200 hover:border-green-300 hover:bg-green-50",
     yellow:
       "text-yellow-600 hover:text-yellow-600 border-yellow-200 hover:border-yellow-300 hover:bg-yellow-50",
+      blue: "bg-primary text-white hover:bg-[rgb(11,33,67)]"
   },
   ghost: {
     defaultColor: "",
     green: "text-green-600 hover:text-green-600 hover:bg-green-50",
     yellow: "text-yellow-600 hover:text-yellow-600 hover:bg-yellow-50",
+    blue: "bg-primary text-white hover:bg-[rgb(11,33,67)]"
   },
   destructive: {
     defaultColor: "",
     green: "bg-red-600 hover:bg-red-500",
     yellow: "bg-orange-600 hover:bg-orange-500",
+    blue: "bg-primary text-white hover:bg-[rgb(11,33,67)]"
   },
   link: {
     defaultColor: "",
     green: "text-green-600 hover:text-green-500",
     yellow: "text-yellow-600 hover:text-yellow-500",
+    blue: "bg-primary text-white hover:bg-[rgb(11,33,67)]"
   },
 };
 
@@ -47,7 +53,7 @@ type ButtonDemoProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: ReactElement | null;
   startIcon?: ReactElement | null;
   endIcon?: ReactElement | null;
-  color?: "defaultColor" | "green" | "yellow";
+  color?: "defaultColor" | "green" | "yellow" | "blue";
   disabled?: boolean;
   onClick?: () => void;
 };

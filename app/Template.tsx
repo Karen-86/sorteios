@@ -1,8 +1,10 @@
+"use client";
+
 import React from "react";
-import { Navbar, Footer, ButtonDemo , SorteioCard} from "@/components/index.js";
+import { Navbar, Footer, ButtonDemo, SorteioCard, RealizadosCard, CarouselDemo, DizendoCard } from "@/components/index.js";
 import localData from "@/localData";
 
-const { giftsImage, actorImage } = localData.images;
+const { giftsImage, actorImage, sorterioImage, avatar1Image, avatar2Image, avatar3Image, avatar4Image } = localData.images;
 const { playIcon } = localData.svgs;
 
 const Content = () => {
@@ -15,6 +17,8 @@ const Content = () => {
         <ShowcaseSection />
         <ComoFancionaSection />
         <SorteiosSection />
+        <RealizadosSection />
+        <DizendoSection />
       </main>
       <Footer />
     </>
@@ -76,19 +80,122 @@ const ComoFancionaSection = () => {
 };
 
 const SorteiosSection = () => {
+  const items = [{ image: sorterioImage }, { image: sorterioImage }, { image: sorterioImage }, { image: sorterioImage }];
   return (
-    <section id="proximos-sorteios" className="sorteios">
+    <section id="proximos-sorteios" className="sorteios overflow-hidden sm:overflow-visible">
       <div className="container">
         <h2 className=" tracking-[-1px] sorteios-title text-[1.875rem] lg:text-[2.5rem]  xl:text-[3.1rem] font-bold text-primary mb-[1.6rem] leading-[1.4]">
           PRÓXIMOS SORTEIOS
         </h2>
-        <article>
-          <h3 className="text-center about-title text-[1.3rem] lg:text-[2rem]  xl:text-[2.75rem] font-normal text-primary mb-[1.6rem]">DIÁRIOS</h3>
-       
-          <div>
-            <SorteioCard/>
-        </div>
+        <article className=" mb-[100px]">
+          <h3 className="text-center about-title text-[1.3rem] lg:text-[2rem]  xl:text-[2.75rem] font-normal text-primary mb-[0.3rem]">
+            DIÁRIOS
+          </h3>
+
+          <CarouselDemo className="custom-carousel" items={items}>
+            {({ item, index }) => <SorteioCard {...item} />}
+          </CarouselDemo>
         </article>
+
+        <article className=" mb-[100px]">
+          <h3 className="text-center about-title text-[1.3rem] lg:text-[2rem]  xl:text-[2.75rem] font-normal text-primary mb-[0.3rem]">
+            SEMANAIS
+          </h3>
+
+          <CarouselDemo className="custom-carousel" items={items}>
+            {({ item, index }) => <SorteioCard {...item} />}
+          </CarouselDemo>
+        </article>
+
+        <article className=" mb-[100px]">
+          <h3 className="text-center about-title text-[1.3rem] lg:text-[2rem]  xl:text-[2.75rem] font-normal text-primary mb-[0.3rem]">
+            MENSAIS
+          </h3>
+
+          <CarouselDemo className="custom-carousel" items={items}>
+            {({ item, index }) => <SorteioCard {...item} />}
+          </CarouselDemo>
+        </article>
+
+        <article className=" mb-[60px]">
+          <h3 className="text-center about-title text-[1.3rem] lg:text-[2rem]  xl:text-[2.75rem] font-normal text-primary mb-[0.3rem]">
+            ANUAIS
+          </h3>
+
+          <CarouselDemo className="custom-carousel" items={items}>
+            {({ item, index }) => <SorteioCard {...item} />}
+          </CarouselDemo>
+        </article>
+
+        <ButtonDemo text="EFETUE SEU CADASTRO" className="rounded-full mx-auto flex  mb-[20px]" size="lg" color="blue" />
+      </div>
+    </section>
+  );
+};
+
+const RealizadosSection = () => {
+  const items = [
+    { image: sorterioImage, avatar: avatar1Image },
+    { image: sorterioImage, avatar: avatar2Image },
+    { image: sorterioImage, avatar: avatar3Image },
+    { image: sorterioImage, avatar: avatar4Image },
+  ];
+  return (
+    <section id="proximos-sorteios" className="realizados overflow-hidden sm:overflow-visible !pb-[7rem]">
+      <div className="container">
+        <h2 className="text-center tracking-[-1px] sorteios-title text-[1.875rem] lg:text-[2.5rem]  xl:text-[3.1rem] font-bold text-primary mb-[1.6rem] leading-[1.4]">
+          SORTEIOS REALIZADOS
+        </h2>
+
+        <CarouselDemo className="custom-carousel" items={items} contentClassName="xl:grid xl:grid-cols-2 xl:gap-4  xl:max-w-full">
+          {({ item, index }) => <RealizadosCard {...item} />}
+        </CarouselDemo>
+        {/* <div className="xl:grid xl:grid-cols-2 xl:gap-4 max-w-[600px] xl:max-w-full mx-auto">
+          <RealizadosCard />
+          <RealizadosCard />
+          <RealizadosCard />
+          <RealizadosCard />
+        </div> */}
+      </div>
+    </section>
+  );
+};
+
+const DizendoSection = () => {
+  const items = [
+    { rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar1Image },
+    { rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar2Image },
+    { rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar3Image },
+    { rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar4Image },
+  ];
+  return (
+    <section id="dizendo" className="dizendo  sm:overflow-visible bg-white">
+      <div className="container">
+        <h2 className="text-center tracking-[-1px] sorteios-title text-[1.875rem] lg:text-[2.5rem]  xl:text-[3.1rem] font-bold text-primary mb-[1.6rem] leading-[1.4]">
+          O QUE ESTÃO DIZENDO
+        </h2>
+
+        <div className="flex flex-col md:flex-row md:items-center  gap-x-25 gap-y-15">
+          <CarouselDemo
+            className="dizendo-carousel  md:max-w-[400px] xl:max-w-[600px] w-full"
+            items={items}
+            itemClassName=""
+            arrowsClassName="!block !max-w-[0px] ml-auto   !static  !translate-x-0"
+          >
+            {({ item, index }) => <DizendoCard {...item} />}
+          </CarouselDemo>
+          <div className="testimonial relative  w-full">
+            <div className="testimonial-header">
+              <img className="testimonial-avatar w-full" src={avatar1Image} alt="" />
+            </div>
+            <div className="testimonial-footer absolute bottom-0  backdrop-blur-sm !bg-white/30 w-full py-3 px-5 h-0 pt-[25%] border-t border-t-gray-300">
+              <div className="testimonials-content absolute top-[50%] transform-[translateY(-50%)]">
+                <h4 className="testimonial-name  text-[2rem] xl:text-[3rem] text-white mb-[0rem]">John Doe</h4>
+                <p className="testimonial-profession text-[1.125rem] text-white">Hourglass</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
