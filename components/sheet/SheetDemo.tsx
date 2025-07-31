@@ -37,7 +37,7 @@ export function SheetDemo({
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>{trigger ? trigger : <Button variant="outline">Open</Button>}</SheetTrigger>
-      <SheetContent className={`${contentClassName} `} side={side}>
+      <SheetContent className={`${contentClassName} `}>
         <SheetHeader className="text-left">
           <SheetTitle>{title}</SheetTitle>
           <SheetDescription>{description}</SheetDescription>
