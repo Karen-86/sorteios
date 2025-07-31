@@ -1,0 +1,11 @@
+ /* PARTIALS */
+@import "../app/globals.css";
+@import "../app/home.css";
+
+ /* PAGES */
+
+ /* COMPONENTS */
+@import '../components/navbar/navbar.css';
+
+/* REST */
+
