@@ -3,6 +3,7 @@
 import React, { useState, useCallback } from "react";
 import { Navbar, Footer, ButtonDemo, SorteioCard, RealizadosCard, CarouselDemo, DizendoCard } from "@/components/index.js";
 import localData from "@/localData";
+import Image from "next/image";
 
 const { giftsImage, actorImage, sorterioImage, avatar1Image, avatar2Image, avatar3Image, avatar4Image } = localData.images;
 const { playIcon } = localData.svgs;
@@ -42,7 +43,8 @@ const ShowcaseSection = () => {
             <ButtonDemo text="EFETUE SEU CADASTRO" className="rounded-full" size="lg" />
           </div>
           <div className="showcase-image flex-1 max-w-[400px] xl:max-w-[600px] xl:mb-[-100px] xl:mr-[-40px]">
-            <img className="w-full" src={giftsImage} alt="" />
+            <Image width='512' height='486'  className="w-full" src={giftsImage} alt="" />
+            {/* <img className="w-full" src={giftsImage} alt="" /> */}
           </div>
         </div>
       </div>
@@ -64,7 +66,8 @@ const ComoFancionaSection = () => {
             </h2>
             <div className=" mx-auto  como-fanciona-image max-w-[800px] 4xl:max-w-[1100px] mb-6 rounded-[16px] overflow-hidden">
               <div className="w-full pt-[90%] md:pt-[56.25%] h-0 relative">
-                <img className="w-full h-full absolute top-0 left-0 object-cover" src={actorImage} alt="" />
+                {/* <img className="w-full h-full absolute top-0 left-0 object-cover" src={actorImage} alt="" /> */}
+                <Image  width='1000' height="591" className="w-full h-full absolute top-0 left-0 object-cover" src={actorImage} alt="" />
                 <ButtonDemo
                   startIcon={playIcon}
                   text="Play Video"
@@ -198,7 +201,14 @@ const DizendoSection = () => {
           </CarouselDemo>
           <div className="testimonial relative  w-full">
             <div className="testimonial-header relative h-0 pt-[120%]">
-              <img
+              {/* <img
+                className="testimonial-avatar  absolute top-0 left-0 w-full h-full object-cover"
+                src={activeTestemonial.avatar}
+                alt=""
+              /> */}
+              <Image
+                width={576}
+                height={721}
                 className="testimonial-avatar  absolute top-0 left-0 w-full h-full object-cover"
                 src={activeTestemonial.avatar}
                 alt=""

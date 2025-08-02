@@ -11,3 +11,4 @@ export { InputDemo } from "./input/InputDemo.tsx";
 export { SelectScrollable } from "./select/select-scrollable/SelectScrollable.tsx";
 export { TextareaDemo } from "./textarea/TextareaDemo.tsx";
 export { DialogDemo } from "./dialog/DialogDemo.tsx";
+export { CheckboxDemo } from "./checkbox/CheckboxDemo.tsx";
