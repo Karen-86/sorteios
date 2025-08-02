@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Navbar, Footer, ButtonDemo, InputDemo, SelectScrollable, TextareaDemo } from "@/components/index";
 import localData from "@/localData";
+import Image from "next/image";
 
 const { contactImage } = localData.images;
 
@@ -127,7 +128,8 @@ const ShowcaseSection = () => {
 
           <div className="w-full flex-1">
             <div className=" relative h-0 pt-[120%] ">
-              <img className="contact-cover  absolute top-0 left-0 w-full h-full object-cover" src={contactImage} alt="" />
+              {/* <img className="contact-cover  absolute top-0 left-0 w-full h-full object-cover" src={contactImage} alt="" /> */}
+              <Image width={800} height={576} className="contact-cover  absolute top-0 left-0 w-full h-full object-cover" src={contactImage} alt="" />
             </div>
           </div>
         </div>
