@@ -3,8 +3,8 @@ import Template from "./Template";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Bem-vindo ao nosso site! Explore nossos serviços, novidades e tudo o que temos a oferecer.",
+  title: "Contato",
+  description: "Entre em contato conosco para dúvidas, sugestões ou suporte. Estamos prontos para ajudar!",
 };
 
 export default function Home() {

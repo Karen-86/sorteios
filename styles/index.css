@@ -6,6 +6,7 @@
 
  /* COMPONENTS */
 @import '../components/navbar/navbar.css';
+@import '../components/select/select-scrollable/select-scrollable.css';
 
 /* REST */
 

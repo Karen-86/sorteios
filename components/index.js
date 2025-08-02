@@ -7,3 +7,7 @@ export { default as SorteioCard } from "./cards/sorteio-card/SorteioCard.tsx";
 export { default as RealizadosCard } from "./cards/realizados-card/RealizadosCard.tsx";
 export { default as DizendoCard } from "./cards/dizendo-card/DizendoCard.tsx";
 export { default as Footer } from "./footer/Footer.tsx";
+export { InputDemo } from "./input/InputDemo.tsx";
+export { SelectScrollable } from "./select/select-scrollable/SelectScrollable.tsx";
+export { TextareaDemo } from "./textarea/TextareaDemo.tsx";
+export { DialogDemo } from "./dialog/DialogDemo.tsx";

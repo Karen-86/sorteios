@@ -22,13 +22,14 @@ type CarouselDemoProps = {
   autoplay?: boolean;
   items?: { [key: string]: string | number | (() => void) }[];
   children: (props: { item: { [key: string]: string | number | (() => void) }; index: number }) => ReactNode;
+  callback?: (data:any) => void;
 };
 
 export function CarouselDemo({
   className = "",
-    itemClassName = "basis-auto sm:basis-1/2 md:basis-1/3  xl:basis-1/4 w-[300px] sm:w-auto",
-    contentClassName = "",
-    arrowsClassName= '',
+  itemClassName = "basis-auto sm:basis-1/2 md:basis-1/3  xl:basis-1/4 w-[300px] sm:w-auto",
+  contentClassName = "",
+  arrowsClassName = "",
   //   itemClassName = "w-[300px] shrink-0 basis-auto xl:basis-full  xl:basis-1/4",
   orientation = "horizontal",
   loop = false,
@@ -36,6 +37,7 @@ export function CarouselDemo({
   autoplay = false,
   items = [{}, {}, {}, {}],
   children = () => "",
+  callback=()=>{}
 }: CarouselDemoProps) {
   const carouselRef = useRef(null);
 
@@ -52,15 +54,17 @@ export function CarouselDemo({
   //     });
   //   }, [api]);
 
+  
+
   React.useEffect(() => {
     if (!api) return;
 
     const onSelect = () => {
       const selectedIndex = api.selectedScrollSnap();
       const currentItem = items[selectedIndex];
-      console.log("Current index:", selectedIndex);
-      console.log("Current item:", currentItem);
-
+      // console.log("Current index:", selectedIndex);
+      // console.log("Current item:", currentItem);
+      callback(currentItem)
       // Optional callback: you could call a function here
       // onChange?.(currentItem);
     };
@@ -85,7 +89,7 @@ export function CarouselDemo({
         loop: loop,
       }}
       orientation={orientation}
-      plugins={autoplay ? [Autoplay({ delay: 2000 })] : []}
+      plugins={autoplay ? [Autoplay({ delay: 5000 })] : []}
     >
       <CarouselContent className={`-ml-1 ${contentClassName}`}>
         {items.map((item, index) => (
@@ -96,10 +100,14 @@ export function CarouselDemo({
       </CarouselContent>
 
       {/* Navigation Arrows */}
-      <div className={`${arrowsClassName} xl:hidden carousel-angles absolute md:static left-[50%] md:left-[none] translate-x-[-50%] md:translate-x-[none] bottom-[-30px] md:bottom-[none]`}>
+      <div
+        className={`${arrowsClassName} xl:hidden carousel-angles absolute md:static left-[50%] md:left-[none] translate-x-[-50%] md:translate-x-[none] bottom-[-30px] md:bottom-[none]`}
+      >
         <CarouselPrevious className="angle-previous" />
         <CarouselNext className="angle-next" />
       </div>
     </Carousel>
   );
 }
+
+

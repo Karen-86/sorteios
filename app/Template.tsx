@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { Navbar, Footer, ButtonDemo, SorteioCard, RealizadosCard, CarouselDemo, DizendoCard } from "@/components/index.js";
 import localData from "@/localData";
 
@@ -14,10 +14,12 @@ const Content = () => {
         <Navbar />
       </header>
       <main className="home-page">
-        <ShowcaseSection />
-        <ComoFancionaSection />
-        <SorteiosSection />
-        <RealizadosSection />
+        <div className="bg-[#F7F7F7]">
+          <ShowcaseSection />
+          <ComoFancionaSection />
+          <SorteiosSection />
+          <RealizadosSection />
+        </div>
         <DizendoSection />
       </main>
       <Footer />
@@ -52,7 +54,7 @@ const ComoFancionaSection = () => {
   return (
     <section
       id="como-funciona"
-      className="como-fanciona py-[2rem] flex items-center bg-indigo rounded-[16px] lg:rounded-[40px] m-[12px]"
+      className="como-fanciona min-h-[calc(100vh-24px)] sm:!py-[3rem] flex items-center bg-indigo rounded-[16px] lg:rounded-[40px] m-[12px]"
     >
       <div className="container">
         <div className="como-fanciona-center">
@@ -60,7 +62,7 @@ const ComoFancionaSection = () => {
             <h2 className="text-center tracking-[-1px] como-fanciona-title text-[1.875rem] lg:text-[2.5rem]  xl:text-[3.1rem] font-bold text-primary mb-[1.6rem] leading-[1.4]">
               COMO FANCIONA
             </h2>
-            <div className=" mx-auto  como-fanciona-image max-w-[1000px] mb-6 rounded-[16px] overflow-hidden">
+            <div className=" mx-auto  como-fanciona-image max-w-[800px] 4xl:max-w-[1100px] mb-6 rounded-[16px] overflow-hidden">
               <div className="w-full pt-[90%] md:pt-[56.25%] h-0 relative">
                 <img className="w-full h-full absolute top-0 left-0 object-cover" src={actorImage} alt="" />
                 <ButtonDemo
@@ -82,7 +84,7 @@ const ComoFancionaSection = () => {
 const SorteiosSection = () => {
   const items = [{ image: sorterioImage }, { image: sorterioImage }, { image: sorterioImage }, { image: sorterioImage }];
   return (
-    <section id="proximos-sorteios" className="sorteios overflow-hidden sm:overflow-visible">
+    <section id="sorteios" className="sorteios overflow-hidden sm:overflow-visible">
       <div className="container">
         <h2 className=" tracking-[-1px] sorteios-title text-[1.875rem] lg:text-[2.5rem]  xl:text-[3.1rem] font-bold text-primary mb-[1.6rem] leading-[1.4]">
           PRÓXIMOS SORTEIOS
@@ -141,7 +143,7 @@ const RealizadosSection = () => {
     { image: sorterioImage, avatar: avatar4Image },
   ];
   return (
-    <section id="proximos-sorteios" className="realizados overflow-hidden sm:overflow-visible !pb-[7rem]">
+    <section id="relizados" className="realizados overflow-hidden sm:overflow-visible !pb-[7rem]">
       <div className="container">
         <h2 className="text-center tracking-[-1px] sorteios-title text-[1.875rem] lg:text-[2.5rem]  xl:text-[3.1rem] font-bold text-primary mb-[1.6rem] leading-[1.4]">
           SORTEIOS REALIZADOS
@@ -163,15 +165,17 @@ const RealizadosSection = () => {
 
 const DizendoSection = () => {
   const items = [
-    { rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar1Image },
-    { rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar2Image },
-    { rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar3Image },
-    { rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar4Image },
+    { id: "1", rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar1Image },
+    { id: "2", rating: 5, name: "John Doe", profession: "Hourglass", avatar: avatar2Image },
+    { id: "3", rating: 5, name: "Jane Doe", profession: "Hourglass", avatar: avatar3Image },
+    { id: "4", rating: 5, name: "Lulu Meyers", profession: "Hourglass", avatar: avatar4Image },
   ];
+  const [activeTestemonial, setActiveTestemonial] = useState(items[0]);
+
   return (
-    <section id="dizendo" className="dizendo  sm:overflow-visible bg-white">
+    <section id="dizendo" className="dizendo  sm:overflow-visible bg-white sm:!pb-[9rem]">
       <div className="container">
-        <h2 className="text-center tracking-[-1px] sorteios-title text-[1.875rem] lg:text-[2.5rem]  xl:text-[3.1rem] font-bold text-primary mb-[1.6rem] leading-[1.4]">
+        <h2 className="text-center tracking-[-1px] sorteios-title text-[1.875rem] lg:text-[2.5rem]  xl:text-[3.1rem] font-bold text-primary  mb-[3rem] lg:mb-[5rem] leading-[1.4]">
           O QUE ESTÃO DIZENDO
         </h2>
 
@@ -181,16 +185,28 @@ const DizendoSection = () => {
             items={items}
             itemClassName=""
             arrowsClassName="!block !max-w-[0px] ml-auto   !static  !translate-x-0"
+            autoplay={true}
+            loop={true}
+            callback={(data) => {
+              if (activeTestemonial.id == data.id) return;
+              console.log(activeTestemonial.id, "activeTestemonial");
+              console.log(data.id, "data");
+              setActiveTestemonial(data);
+            }}
           >
             {({ item, index }) => <DizendoCard {...item} />}
           </CarouselDemo>
           <div className="testimonial relative  w-full">
-            <div className="testimonial-header">
-              <img className="testimonial-avatar w-full" src={avatar1Image} alt="" />
+            <div className="testimonial-header relative h-0 pt-[120%]">
+              <img
+                className="testimonial-avatar  absolute top-0 left-0 w-full h-full object-cover"
+                src={activeTestemonial.avatar}
+                alt=""
+              />
             </div>
             <div className="testimonial-footer absolute bottom-0  backdrop-blur-sm !bg-white/30 w-full py-3 px-5 h-0 pt-[25%] border-t border-t-gray-300">
               <div className="testimonials-content absolute top-[50%] transform-[translateY(-50%)]">
-                <h4 className="testimonial-name  text-[2rem] xl:text-[3rem] text-white mb-[0rem]">John Doe</h4>
+                <h4 className="testimonial-name  text-[2rem] xl:text-[3rem] text-white mb-[0rem]">{activeTestemonial.name}</h4>
                 <p className="testimonial-profession text-[1.125rem] text-white">Hourglass</p>
               </div>
             </div>

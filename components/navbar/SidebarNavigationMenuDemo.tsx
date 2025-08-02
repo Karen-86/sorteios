@@ -1,14 +1,12 @@
-
-
 import React from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { SheetDemo, AccordionDemo } from "@/components/index.js";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { navLinks,   } from "./Navbar";
+import { navLinks } from "./Navbar";
 
-export function SidebarNavigationMenuDemo() {
+export function SidebarNavigationMenuDemo({ type = "" }) {
   const pathname = usePathname();
   return (
     <SheetDemo
@@ -17,7 +15,7 @@ export function SidebarNavigationMenuDemo() {
       side="left"
       contentClassName=" overflow-y-auto "
       trigger={
-        <Button size="icon" variant="ghost" className="lg:hidden text-white">
+        <Button size="icon" variant="ghost" className={`lg:hidden  ${type == "navbar-light" ? "text-black" : "text-white"}`}>
           <Menu className="!h-[25px] !w-[25px]" />
         </Button>
       }
@@ -26,16 +24,12 @@ export function SidebarNavigationMenuDemo() {
         <nav className="navbar">
           <ul className="mt-[20px]">
             {navLinks.map((item) => {
-              const activeLink =
-                (item.href === "/" && pathname === "/") ||
-                (item.href !== "/" && pathname.startsWith(item.href));
+              const activeLink = (item.href === "/" && pathname === "/") || (item.href !== "/" && pathname.startsWith(item.href));
               return (
                 <li key={item.title} className="list-none">
                   <a
                     href={item.href}
-                    className={`block py-2 px-4 hover:bg-slate-100 rounded-md ${
-                      activeLink ? "text-success" : ""
-                    }`}
+                    className={`block py-2 px-4 hover:bg-slate-100 rounded-md ${activeLink ? "text-success" : ""}`}
                     onClick={onClose}
                   >
                     {item.title}
@@ -44,8 +38,6 @@ export function SidebarNavigationMenuDemo() {
               );
             })}
           </ul>
-   
-        
         </nav>
       )}
     </SheetDemo>

@@ -17,7 +17,7 @@ import { usePathname } from "next/navigation";
 
 import { navLinks } from "./Navbar";
 
-export function NavigationMenuDemo() {
+export function NavigationMenuDemo({type = ''}) {
   const pathname = usePathname();
 
   return (
@@ -27,7 +27,7 @@ export function NavigationMenuDemo() {
           const activeLink = (href === "/" && pathname === "/") || (href !== "/" && pathname.startsWith(href));
           return (
             <NavigationMenuItem key={index} className="">
-              <a href={href} className="block text-white hover:text-neutral-300 px-3 duration-300">
+              <a href={href} className={`block ${type == 'navbar-light' ? 'text-black hover:text-gray-400' : 'text-white hover:text-neutral-300'}   px-3 duration-300`}>
                 <div
                   className={cn(
                     // navigationMenuTriggerStyle(),
