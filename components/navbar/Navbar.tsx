@@ -6,7 +6,7 @@ import { ButtonDemo } from "@/components/index.js";
 import { NavigationMenuDemo } from "./NavigationMenuDemo";
 import { SidebarNavigationMenuDemo } from "./SidebarNavigationMenuDemo";
 
-const { logo } = localData.images;
+const { logo,blueLogo } = localData.images;
 
 export const navLinks = [
   { title: "HOME", href: "/" },
@@ -20,7 +20,7 @@ export default function Navbar({ type = "" }) {
   return (
     <nav className={`navbar mx-[12px]`}>
       <div className="container  py-7 flex items-center justify-between ">
-        <img src={logo} alt="" className="max-w-[130px] xl:max-w-[170px] h-auto " />
+       <a href="/"><img src={type== 'navbar-light' ? blueLogo : logo} alt="" className="max-w-[130px] xl:max-w-[170px] h-auto " /></a> 
 
         <NavigationMenuDemo type={type} />
 

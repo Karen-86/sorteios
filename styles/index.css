@@ -1,12 +1,12 @@
- /* PARTIALS */
+/* PARTIALS */
+@import "../public/assets/fonts/Gilroy/stylesheet.css";
 @import "../app/globals.css";
 @import "../app/home.css";
 
- /* PAGES */
+/* PAGES */
 
- /* COMPONENTS */
-@import '../components/navbar/navbar.css';
-@import '../components/select/select-scrollable/select-scrollable.css';
+/* COMPONENTS */
+@import "../components/navbar/navbar.css";
+@import "../components/select/select-scrollable/select-scrollable.css";
 
 /* REST */
-

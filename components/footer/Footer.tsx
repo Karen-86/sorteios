@@ -5,7 +5,7 @@ import Link from "next/link";
 import { DialogDemo } from "@/components/index";
 
 const { logo } = localData.images;
-const { twitterIcon, linkedinIcon, facebookIcon } = localData.svgs;
+const { twitterIcon, instagramIcon, facebookIcon, youtubeIcon } = localData.svgs;
 
 const Footer = () => {
   return (
@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(250px,_auto))] xl:grid-cols-[2fr_1fr_1fr_1fr_1fr] justify-between gap-x-[45px] gap-y-[40px] mb-[100px] sm:mb-[130px]">
           <div className="col min-w-[200px]">
             <div className="flex gap-1 items-center font-medium mb-8">
-              <img src={logo} alt="" className="max-w-[170px] h-auto " />
+             <a href="/"> <img src={logo} alt="" className="max-w-[170px] h-auto " /></a>
             </div>
             <div className="max-w-[110px] text-sm text-[#94969C] font-medium leading-[1.7]">
               Localização 800, Brazos St. Austin, TX, USA
@@ -215,15 +215,18 @@ const Footer = () => {
                 {twitterIcon}
               </a>
               <a
-                href="https://www.linkedin.com/in/john-doe/"
+                href="https://www.instagram.com/john-doe/"
                 target="_blank"
-                className="hover:translate-y-[-3px] duration-300 ease"
+                className="hover:translate-y-[-3px] duration-300 ease "
               >
-                {linkedinIcon}
+                {instagramIcon}
               </a>
 
               <a href="https://www.facebook.com/john-doe/" target="_blank" className="hover:translate-y-[-3px] duration-300 ease">
                 {facebookIcon}
+              </a>
+              <a href="https://www.youtube.com/@john-doe/" target="_blank" className="hover:translate-y-[-3px] duration-300 ease">
+                {youtubeIcon}
               </a>
             </ul>
           </div>

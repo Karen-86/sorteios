@@ -18,7 +18,7 @@ import {
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 
-const { logo } = localData.images;
+const { blueLogo } = localData.images;
 
 const Template = () => {
   const [state, setState] = useState({
@@ -38,7 +38,7 @@ const Template = () => {
   };
 
   const carouselRef = useRef<CarouselApi | null>(null);
-   const domRef = useRef<HTMLDivElement | null>(null);
+  const domRef = useRef<HTMLDivElement | null>(null);
 
   const [api, setApi] = React.useState<CarouselApi>();
 
@@ -58,9 +58,9 @@ const Template = () => {
       api.off("select", onSelect);
     };
   }, [api]);
-  
+
   return (
-    <div className="min-h-[100vh] flex items-center mx-3 ">
+    <div className="min-h-[100vh] py-[3rem] flex items-start  mx-3 ">
       <Carousel
         setApi={(api) => (carouselRef.current = api)}
         ref={domRef}
@@ -68,14 +68,14 @@ const Template = () => {
         className={`  min-w-full `}
         opts={{
           //  dragFree: false,
-           watchDrag: false,
+          watchDrag: false,
           align: "start",
           loop: false,
         }}
         orientation="horizontal"
         // plugins={ [Autoplay({ delay: 5000 })] }
       >
-        <CarouselContent className={`-ml-1  items-center`}>
+        <CarouselContent className={`-ml-1  `}>
           <CarouselItem className={`pl-1 mx-auto `}>
             <Step1 state={state} handleOnChange={handleOnChange} carouselRef={carouselRef} />
           </CarouselItem>
@@ -83,11 +83,11 @@ const Template = () => {
             <Step2 state={state} handleOnChange={handleOnChange} carouselRef={carouselRef} />
           </CarouselItem>
           <CarouselItem className={`pl-1`}>
-            <Step3 state={state} handleOnChange={handleOnChange} carouselRef={carouselRef}/>
+            <Step3 state={state} handleOnChange={handleOnChange} carouselRef={carouselRef} />
           </CarouselItem>
         </CarouselContent>
 
-        <div className={` carousel-angles absolute left-[52%] translate-x-[-50%] bottom-[-30px] border`}>
+        <div className={` carousel-angles fixed left-[52%] translate-x-[-50%] bottom-[30px] border`}>
           <CarouselPrevious className="angle-previous" />
           <CarouselNext className="angle-next" />
         </div>
@@ -96,21 +96,22 @@ const Template = () => {
   );
 };
 
-const Step1 = ({ state = {}, handleOnChange = () => { }, carouselRef }: any) => {
-  const [isLoading,setIsLoading] = useState(false)
-  
+const Step1 = ({ state = {}, handleOnChange = () => {}, carouselRef }: any) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = (e: any) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     setTimeout(() => {
-      
-      carouselRef.current?.scrollNext()
-      setIsLoading(false)
-    },1200)
-  }
+      carouselRef.current?.scrollNext();
+      setIsLoading(false);
+    }, 1200);
+  };
   return (
-    <div className="max-w-[400px] mx-auto border-gray-500 border-2 w-full px-5 sm:px-10 pt-8 pb-20 ">
-      <img src={logo} className="max-w-[130px] mx-auto mb-[2.5rem]" alt="" />
+    <div className="max-w-[400px] mx-auto shadow-md border rounded-md w-full px-5 sm:px-10 pt-8 pb-20 ">
+      <a href="/">
+        <img src={blueLogo} className="max-w-[130px] mx-auto mb-[2.5rem]" alt="" />
+      </a>
       <h1 className="contact-title sorteios-title text-[1.5rem] font-bold text-center uppercase text-dark  mb-[1.5rem] leading-[1.4]">
         Efetue seu cadastro
       </h1>
@@ -137,21 +138,22 @@ const Step1 = ({ state = {}, handleOnChange = () => { }, carouselRef }: any) => 
   );
 };
 
-const Step2 = ({ state = {}, handleOnChange = () => { }, carouselRef }: any) => {
-    const [isLoading,setIsLoading] = useState(false)
-  
+const Step2 = ({ state = {}, handleOnChange = () => {}, carouselRef }: any) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = (e: any) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     setTimeout(() => {
-      
-      carouselRef.current?.scrollNext()
-      setIsLoading(false)
-    },1200)
-  }
+      carouselRef.current?.scrollNext();
+      setIsLoading(false);
+    }, 1200);
+  };
   return (
-    <div className="max-w-[400px] mx-auto border-gray-500 border-2 w-full px-5 sm:px-10 pt-8 pb-20 ">
-      <img src={logo} className="max-w-[130px] mx-auto mb-[2.5rem]" alt="" />
+    <div className="max-w-[400px] mx-auto shadow-md border rounded-md w-full px-5 sm:px-10 pt-8 pb-20 ">
+      <a href="/">
+        <img src={blueLogo} className="max-w-[130px] mx-auto mb-[2.5rem]" alt="" />
+      </a>
       <h1 className="contact-title sorteios-title text-[1.5rem] font-bold text-center uppercase text-dark  mb-[1.5rem] leading-[1.4]">
         Efetue seu cadastro
       </h1>
@@ -162,17 +164,16 @@ const Step2 = ({ state = {}, handleOnChange = () => { }, carouselRef }: any) => 
       <div className="font-bold text-center mb-[1rem]">seuemail@email.com</div>
       <form action="" className="" onSubmit={onSubmit}>
         <div className="mx-auto  mb-[1rem] flex justify-center">
-
-        <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS} >
-          <InputOTPGroup>
-            <InputOTPSlot className="py-[1.3rem]" index={0} />
-            <InputOTPSlot className="py-[1.3rem]" index={1} />
-            <InputOTPSlot className="py-[1.3rem]" index={2} />
-            <InputOTPSlot className="py-[1.3rem]" index={3} />
-            <InputOTPSlot className="py-[1.3rem]" index={4} />
-            <InputOTPSlot className="py-[1.3rem]" index={5} />
-          </InputOTPGroup>
-        </InputOTP>
+          <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
+            <InputOTPGroup>
+              <InputOTPSlot className="py-[1.3rem]" index={0} />
+              <InputOTPSlot className="py-[1.3rem]" index={1} />
+              <InputOTPSlot className="py-[1.3rem]" index={2} />
+              <InputOTPSlot className="py-[1.3rem]" index={3} />
+              <InputOTPSlot className="py-[1.3rem]" index={4} />
+              <InputOTPSlot className="py-[1.3rem]" index={5} />
+            </InputOTPGroup>
+          </InputOTP>
         </div>
         <br />
         <br />
@@ -183,23 +184,24 @@ const Step2 = ({ state = {}, handleOnChange = () => { }, carouselRef }: any) => 
   );
 };
 
-const Step3 = ({ state = {}, handleOnChange = () => { }, carouselRef }: any) => {
-      const [isLoading,setIsLoading] = useState(false)
-  
+const Step3 = ({ state = {}, handleOnChange = () => {}, carouselRef }: any) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = (e: any) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     setTimeout(() => {
-      
       // carouselRef.current?.scrollNext()
 
-      alert('You have registered successfully!')
-      setIsLoading(false)
-    },1200)
-  }
+      alert("You have registered successfully!");
+      setIsLoading(false);
+    }, 1200);
+  };
   return (
-    <div className="max-w-[400px] mx-auto border-gray-500 border-2 w-full px-5 sm:px-10 pt-8 pb-8 ">
-      <img src={logo} className="max-w-[130px] mx-auto mb-[2.5rem]" alt="" />
+    <div className="max-w-[400px] mx-auto shadow-md border rounded-md w-full px-5 sm:px-10 pt-8 pb-8 ">
+      <a href="/">
+        <img src={blueLogo} className="max-w-[130px] mx-auto mb-[2.5rem]" alt="" />
+      </a>
       <h1 className="contact-title sorteios-title text-[1.5rem] font-bold text-center uppercase text-dark  mb-[1.5rem] leading-[1.4]">
         Efetue seu cadastro
       </h1>
@@ -254,7 +256,9 @@ const Step3 = ({ state = {}, handleOnChange = () => { }, carouselRef }: any) => 
           placeholder="Crie una senha"
           callback={handleOnChange}
         />
-        <p className="text-xs text-neutral-400 font-light  max-w-[270px] mx-auto text-center">Sua senha deve conter pelo menos 6 caracteres, incluindo letras e números.</p>
+        <p className="text-xs text-neutral-400 font-light  max-w-[270px] mx-auto text-center">
+          Sua senha deve conter pelo menos 6 caracteres, incluindo letras e números.
+        </p>
         <br />
         <br />
         <CheckboxDemo label="Concordo com os termos e politicas" className="mb-[0.5rem] text-neutral-500" />
