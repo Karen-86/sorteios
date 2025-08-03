@@ -145,8 +145,7 @@
 }
 
 html {
-  overflow-x: hidden;
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
   @media (min-width: 2560px) {
     font-size: calc(16px * 2560 / 1920);
   }
@@ -159,8 +158,9 @@ body {
   /* font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif; */
   font-family: var(--font-gilroy), Arial, Helvetica, sans-serif;
   /* background-color: #F7F7F7; */
-
+  
   /* color: var(--dark); */
+  overflow-x: hidden;
 }
 
 @utility container {
